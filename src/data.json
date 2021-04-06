@@ -1,0 +1,70 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Music",
+            "videos": [
+                {
+                    "id": 0,
+                    "title": "Video Rusak",
+                    "url": "https://www.youtube.com/embed/???"
+                },
+                {
+                    "id": 1,
+                    "title": "lofi hip hop radio - beats to relax/study to",
+                    "url": "https://www.youtube.com/embed/5qap5aO4i9A"
+                },
+                {
+                    "id": 2,
+                    "title": "Stunning Studio Ghibli Soundtracks",
+                    "url": "https://www.youtube.com/embed/z4WCaWJgOqM"
+                },
+                {
+                    "id": 3,
+                    "title": "Best Of Slow Blues -rock (inspiration) (meditation)",
+                    "url": "https://www.youtube.com/embed/krUc72SukAk"
+                },
+                {
+                    "id": 4,
+                    "title": "Alternative Rock Of The 2000s",
+                    "url": "https://www.youtube.com/embed/UZw-CU32Uqc"
+                },
+                {
+                    "id": 5,
+                    "title": "Pop Hits 2020",
+                    "url": "https://www.youtube.com/embed/zLB0vicG38I"
+                },
+                {
+                    "id": 6,
+                    "title": "Rock Ballads 80s 90s Playlist",
+                    "url": "https://www.youtube.com/embed/onSTZGv4BA4"
+                },
+                {
+                    "id": 7,
+                    "title": "Most Old Beautiful Love Songs",
+                    "url": "https://www.youtube.com/embed/CBYh2CpFwyM"
+                },
+                {
+                    "id": 8,
+                    "title": "20 Lagu Chrisye Paling Enak Di Dengarkan",
+                    "url": "https://www.youtube.com/embed/MOzuw2_5ziQ"
+                },
+                {
+                    "id": 9,
+                    "title": "Lagu Pop Indonesia Tahun 2000an",
+                    "url": "https://www.youtube.com/embed/l-jw6_GZj2k"
+                },
+                {
+                    "id": 10,
+                    "title": "New Year Mix 2021 - Best of EDM Party Electro House & Festival Music",
+                    "url": "https://www.youtube.com/embed/WdBldz3YLss"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Tutorial",
+            "videos": []
+        }
+    ]
+}

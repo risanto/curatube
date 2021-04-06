@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import YouTube from 'react-youtube'
+import Sidebar from '../src/components/Sidebar'
 
 function App() {
+  const opts = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      autoplay: 1
+    }
+  }
+
+  function onReady(event) {
+    event.target.pauseVideo()
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <main className={"flex"}>
+        <YouTube videoId="2g811Eo7K8U" opts={opts} onReady={onReady} />
+        <Sidebar />
+      </main>
+    </>
+  )
 }
 
 export default App;

@@ -1,5 +1,6 @@
 import YouTube from 'react-youtube'
 import Sidebar from '../src/components/Sidebar'
+import Navbar from '../src/components/Navbar'
 
 function App() {
   const opts = {
@@ -16,6 +17,9 @@ function App() {
 
   return (
     <>
+      <header>
+        <Navbar/>
+      </header>
       <main className={"flex"}>
         <YouTube videoId="2g811Eo7K8U" opts={opts} onReady={onReady} />
         <Sidebar />

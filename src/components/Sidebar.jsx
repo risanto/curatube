@@ -3,14 +3,12 @@ import React from 'react'
 import { data as playlists } from '../data.json'
 import PlaylistsDropdown from './PlaylistsDropdown'
 import VideoList from './VideoList'
-import { useHistory, useLocation } from 'react-router-dom'
 import useQuery from '../hooks/useQuery'
 
 export default function Sidebar(props) {
     // When using fetch
     // const { loading, error, data = [] } = useFetch('https://s3-ap-southeast-1.amazonaws.com/pacmannai.com/static/json/playlist.json', {}, [])
 
-    const history = useHistory()
     const query = useQuery()
     let activePlaylist = playlists[0]
 
@@ -28,7 +26,7 @@ export default function Sidebar(props) {
                 playlists={playlists}
                 activePlaylist={activePlaylist}
             />
-            {/* <VideoList  */}
+            <VideoList videos={activePlaylist.videos}/>
         </section>
     )
 }

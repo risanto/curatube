@@ -1,7 +1,10 @@
-import React from "react"
-import { createPopper } from "@popperjs/core"
+import React from 'react'
+import { createPopper } from '@popperjs/core'
+import { Link } from 'react-router-dom'
 
-export default function PlaylistsDropdown({ playlists }) {
+export default function PlaylistsDropdown(
+    { playlists, activePlaylist }
+) {
 
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
@@ -32,7 +35,7 @@ export default function PlaylistsDropdown({ playlists }) {
                         }}
                     >
                         <p className={"place-self-center mx-1 px-1 hover:underline"}>
-                            {playlists[0].name}▼
+                            {activePlaylist.name}▼
                         </p>
                     </button>
                     <div
@@ -44,19 +47,21 @@ export default function PlaylistsDropdown({ playlists }) {
                         style={{ minWidth: "12rem" }}
                     >
                         <ul>
-                        {playlists.map((playlist, idx) => {
-                            if (idx !== 0) {
-                                return <li key={idx}><a
-                                    href="#pablo"
-                                    className={
-                                        "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent"
-                                    }
-                                    onClick={e => e.preventDefault()}
-                                >
-                                    {playlist.name}
-                                </a></li>
-                            }
-                        })}
+                            {playlists.length && playlists.map((playlist, idx) => {
+                                if (playlist.id !== activePlaylist.id) {
+                                    return <li key={idx}>
+                                        <Link
+                                            to={`/?playlistId=${playlist.id}`}
+                                            className={
+                                                "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent"
+                                            }
+                                            // onClick={e => e.preventDefault()}
+                                        >
+                                            {playlist.name}
+                                        </Link>
+                                    </li>
+                                }
+                            })}
                         </ul>
                     </div>
                 </div>

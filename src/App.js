@@ -1,8 +1,10 @@
 import { data as playlists } from './data.json'
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+
 import YouTube from 'react-youtube'
 import getYouTubeVideoId from './helpers/getYouTubeVideoId'
+import useWindowDimensions from './hooks/useWindowDimensions'
 
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
@@ -17,9 +19,13 @@ function App() {
   const [activePlaylist, setActivePlaylist] = useState(null)
   const [activeVideo, setActiveVideo] = useState(null)
 
+  const { width, height } = useWindowDimensions()
+
+  // video ratio => height = 0.6 * width
+
   const opts = {
-    height: '780',
-    width: '1280',
+    height: 0.6 * (width - 30),
+    width: width - 30,
     playerVars: {
       autoplay: 1
     }
@@ -48,20 +54,22 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className={"flex"}>
-        {activeVideo && (
-          <>
-            <h1>{activeVideo.title}</h1>
-            <YouTube videoId={getYouTubeVideoId(activeVideo.url)} opts={opts} />
-          </>
-        )}
+      <main className={"flex flex-col mt-12 px-4"}>
+        <div className={"mt-2 flex justify-center align-center"}>
+          <div>
+            <h1 className={"text-lg"}>{
+              activeVideo
+                ? activeVideo.title : defaultVideo.title
+            }</h1>
+            {activeVideo && (
+              <YouTube videoId={getYouTubeVideoId(activeVideo.url)} opts={opts} />
+            )}
 
-        {!activeVideo && (
-          <>
-            <h1>{defaultVideo.title}</h1>
-            <YouTube videoId={getYouTubeVideoId(defaultVideo.url)} opts={opts} />
-          </>
-        )}
+            {!activeVideo && (
+              <YouTube videoId={getYouTubeVideoId(defaultVideo.url)} opts={opts} />
+            )}
+          </div>
+        </div>
 
         <Sidebar playlists={playlists} />
       </main>

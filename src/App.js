@@ -19,13 +19,16 @@ function App() {
   const [activePlaylist, setActivePlaylist] = useState(null)
   const [activeVideo, setActiveVideo] = useState(null)
 
-  const { width, height } = useWindowDimensions()
+  let { width, height } = useWindowDimensions()
 
   // video ratio => height = 0.6 * width
 
+  width = width < 1000 ? width - 30 : 1/2 * width
+  height = 0.6 * width
+
   const opts = {
-    height: 0.6 * (width - 30),
-    width: width - 30,
+    height,
+    width,
     playerVars: {
       autoplay: 1
     }

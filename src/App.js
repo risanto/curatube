@@ -33,8 +33,8 @@ function App() {
         <Navbar />
       </header>
       <main className={"flex"}>
-        <YouTube videoId={videoId} opts={opts}/>
-        <Sidebar />
+        <YouTube videoId={videoId} opts={opts} />
+        <Sidebar playlists={playlists} />
       </main>
     </>
   )

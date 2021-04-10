@@ -8,8 +8,8 @@ export default function Navbar() {
                 <h1>MyTube</h1>
             </button>
         </div>
-        <div>
-            Profile
+        <div className={"border-l pl-2"}>
+            <img src={"/user.svg"} alt={"User icon."} height={25} width={25} />
         </div>
     </nav>
 }

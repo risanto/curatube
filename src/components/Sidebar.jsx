@@ -26,7 +26,7 @@ export default function Sidebar(props) {
                 playlists={playlists}
                 activePlaylist={activePlaylist}
             />
-            <VideoList videos={activePlaylist.videos}/>
+            <VideoList videos={activePlaylist.videos} playlist={activePlaylist}/>
         </section>
     )
 }

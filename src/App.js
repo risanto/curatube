@@ -4,8 +4,8 @@ import Navbar from '../src/components/Navbar'
 
 function App() {
   const opts = {
-    height: '390',
-    width: '640',
+    height: '780',
+    width: '1280',
     playerVars: {
       autoplay: 1
     }

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import getVideoId from '../helpers/getVideoId'
+import getYouTubeVideoId from '../helpers/getYouTubeVideoId'
 
 export default function VideoThumbnail({ video, playlist }) {
-    const videoId = getVideoId(video.url)
-    const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+    const youTubeVideoId = getYouTubeVideoId(video.url)
+    const thumbnail = `https://img.youtube.com/vi/${youTubeVideoId}/maxresdefault.jpg`
 
     return (
-        <Link to={`/?videoId=${videoId}&playlistId=${playlist.id}`}>
-            <img src={thumbnail} width={120} height={90} />
+        <Link to={`/?playlistId=${playlist.id}&videoId=${video.id}`}>
+            <img src={thumbnail} alt={video.title} width={120} height={90} />
             <h1>{video.title}</h1>
         </Link>
     )

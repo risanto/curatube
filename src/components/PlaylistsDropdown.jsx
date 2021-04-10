@@ -2,9 +2,7 @@ import React from 'react'
 import { createPopper } from '@popperjs/core'
 import { Link } from 'react-router-dom'
 
-export default function PlaylistsDropdown(
-    { playlists, activePlaylist }
-) {
+export default function PlaylistsDropdown({ playlists, activePlaylist }) {
 
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
@@ -47,9 +45,9 @@ export default function PlaylistsDropdown(
                         style={{ minWidth: "12rem" }}
                     >
                         <ul>
-                            {playlists.length && playlists.map((playlist, idx) => {
+                            {playlists.length && playlists.map((playlist) => {
                                 if (playlist.id !== activePlaylist.id) {
-                                    return <li key={idx}>
+                                    return <li key={playlist.id}>
                                         <Link
                                             to={`/?playlistId=${playlist.id}`}
                                             className={
@@ -60,6 +58,8 @@ export default function PlaylistsDropdown(
                                         </Link>
                                     </li>
                                 }
+
+                                return <li key={playlist.id}></li>
                             })}
                         </ul>
                     </div>

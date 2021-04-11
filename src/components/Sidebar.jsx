@@ -26,7 +26,7 @@ export default function Sidebar({ playlists, fixedSectionHeight, screenWidth, vi
     }, [activePlaylist, screenWidth])
 
     return (
-        <div className={"h-full laptop:mt-4 laptop:w-96"}>
+        <>
             <div className={"py-2 sticky top-2 laptop:top-12 bg-white"}>
                 <PlaylistsDropdown
                     playlists={playlists}
@@ -42,6 +42,6 @@ export default function Sidebar({ playlists, fixedSectionHeight, screenWidth, vi
                     <VideoList videos={activePlaylist.videos} playlist={activePlaylist} />
                 </div>
             )}
-        </div>
+        </>
     )
 }

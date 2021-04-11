@@ -95,7 +95,7 @@ function App() {
 
             {/* Laptop version */}
             <section
-              className={"hidden laptop:block h-full pb-6 laptop:ml-2 laptop:flex laptop:flex-col laptop:justify-center"}
+              className={"hidden laptop:block h-full pb-6 laptop:mt-4 laptop:ml-2 laptop:flex laptop:flex-col laptop:justify-center"}
             >
               <Sidebar playlists={playlists} fixedSectionHeight={50} screenWidth={width} videoHeight={videoHeight} />
             </section>

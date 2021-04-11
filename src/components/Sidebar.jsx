@@ -37,7 +37,7 @@ export default function Sidebar({ playlists, fixedSectionHeight, screenWidth, vi
             {height && videoHeight && (
                 <div
                     style={{ height }}
-                    className={`overflow-y-scroll`}
+                    className={`overflow-auto`}
                 >
                     <VideoList videos={activePlaylist.videos} playlist={activePlaylist} />
                 </div>

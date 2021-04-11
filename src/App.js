@@ -29,7 +29,7 @@ function App() {
   // video ratio => height = 0.6 * width
 
   useEffect(() => {
-    setVideoWidth(width < 1000 ? width - 40 : 1 / 2 * width)
+    setVideoWidth(width < 1024 ? width - 40 : 1 / 2 * width)
   }, [width])
 
   useEffect(() => {
@@ -69,9 +69,9 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className={"h-full flex flex-col mt-12 px-4"}>
-        <section className={"mt-2 flex flex-col justify-center align-center fixed top-0 bg-white z-10"}>
-            <h1 className={"text-lg mt-10"}>{
+      <main className={"h-full flex flex-col lg:flex-row mt-12 px-4 justify-center"}>
+        <section className={"mt-2 flex flex-col justify-center align-center lg:justify-start sticky top-0 bg-white z-10"}>
+            <h1 className={"text-lg mt-10 lg:mt-4"}>{
               activeVideo
                 ? activeVideo.title : defaultVideo.title
             }</h1>
@@ -83,12 +83,20 @@ function App() {
               <YouTube videoId={getYouTubeVideoId(defaultVideo.url)} opts={opts} />
             )}
         </section>
-
+        
+        {/* Mobile version*/}
         <section
-          className={"h-full pb-6"}
+          className={"block lg:hidden h-full pb-6"}
           style={{ marginTop: videoHeight + 30 }}
         >
           <Sidebar playlists={playlists} fixedSectionHeight={100 + videoHeight}/>
+        </section>
+        
+        {/* Laptop version */}
+        <section
+          className={"hidden lg:block h-full pb-6 lg:ml-2"}
+        >
+          <Sidebar playlists={playlists} fixedSectionHeight={50}/>
         </section>
       </main>
     </div>

@@ -19,9 +19,7 @@ function App() {
   const [activePlaylist, setActivePlaylist] = useState(null)
   const [activeVideo, setActiveVideo] = useState(null)
 
-  let { width, height } = useWindowDimensions()
-
-  console.log(width, height)
+  let { width } = useWindowDimensions()
 
   const [opts, setOpts] = useState({})
 
@@ -67,13 +65,12 @@ function App() {
   }, [activePlaylist, query.videoId])
 
   return (
-    <>
+    <div className={"h-screen overflow-hidden"}>
       <header>
         <Navbar />
       </header>
-      <main className={"flex flex-col mt-12 px-4"}>
-        <div className={"mt-2 flex justify-center align-center fixed top-0 bg-white z-10"}>
-          <div>
+      <main className={"h-full flex flex-col mt-12 px-4"}>
+        <section className={"mt-2 flex flex-col justify-center align-center fixed top-0 bg-white z-10"}>
             <h1 className={"text-lg mt-10"}>{
               activeVideo
                 ? activeVideo.title : defaultVideo.title
@@ -85,14 +82,16 @@ function App() {
             {!activeVideo && (
               <YouTube videoId={getYouTubeVideoId(defaultVideo.url)} opts={opts} />
             )}
-          </div>
-        </div>
+        </section>
 
-        <div style={{ marginTop: videoHeight + 30 }}>
-          <Sidebar playlists={playlists} />
-        </div>
+        <section
+          className={"h-full pb-6"}
+          style={{ marginTop: videoHeight + 30 }}
+        >
+          <Sidebar playlists={playlists} fixedSectionHeight={100 + videoHeight}/>
+        </section>
       </main>
-    </>
+    </div>
   )
 }
 

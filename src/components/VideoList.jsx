@@ -3,7 +3,7 @@ import VideoThumbnail from './VideoThumbnail'
 
 export default function VideoList({ videos, playlist }) {
     return (
-        <ul className={"mt-2"}>
+        <ul>
             {videos.map(video => {
                 return (
                     <li key={video.id}>

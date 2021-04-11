@@ -5,7 +5,7 @@ export default function VideoList({ videos, playlist }) {
     return (
         <ul>
             {!videos.length && (
-                <h1 className={"text-center"}>There are no videos in this playlist.</h1>
+                <h1 className={"text-center mt-8"}>There are no videos in this playlist.</h1>
             )}
             {videos.map(video => {
                 return (

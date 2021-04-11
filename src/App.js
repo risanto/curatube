@@ -20,23 +20,33 @@ function App() {
   const [activeVideo, setActiveVideo] = useState(null)
 
   let { width, height } = useWindowDimensions()
+
+  console.log(width, height)
+
   const [opts, setOpts] = useState({})
+
+  const [videoWidth, setVideoWidth] = useState(null)
+  const [videoHeight, setVideoHeight] = useState(null)
 
   // video ratio => height = 0.6 * width
 
   useEffect(() => {
-    width = width < 1000 ? width - 30 : 1/2 * width
-    height = 0.6 * width
+    setVideoWidth(width < 1000 ? width - 40 : 1 / 2 * width)
+  }, [width])
 
+  useEffect(() => {
+    setVideoHeight(0.6 * videoWidth)
+  }, [videoWidth])
+
+  useEffect(() => {
     setOpts({
-      height,
-      width,
+      width: videoWidth,
+      height: videoHeight,
       playerVars: {
         autoplay: 1
       }
     })
-
-  }, [width, height])
+  }, [videoWidth, videoHeight])
 
   useEffect(() => {
     if (!query.videoId) {
@@ -62,9 +72,9 @@ function App() {
         <Navbar />
       </header>
       <main className={"flex flex-col mt-12 px-4"}>
-        <div className={"mt-2 flex justify-center align-center"}>
+        <div className={"mt-2 flex justify-center align-center fixed top-0 bg-white z-10"}>
           <div>
-            <h1 className={"text-lg"}>{
+            <h1 className={"text-lg mt-10"}>{
               activeVideo
                 ? activeVideo.title : defaultVideo.title
             }</h1>
@@ -78,7 +88,9 @@ function App() {
           </div>
         </div>
 
-        <Sidebar playlists={playlists} />
+        <div style={{ marginTop: videoHeight + 30 }}>
+          <Sidebar playlists={playlists} />
+        </div>
       </main>
     </>
   )

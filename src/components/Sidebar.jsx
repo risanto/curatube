@@ -12,11 +12,13 @@ export default function Sidebar({ playlists }) {
     }
 
     return (
-        <section className={"flex flex-col"}>
-            <PlaylistsDropdown
-                playlists={playlists}
-                activePlaylist={activePlaylist}
-            />
+        <section>
+            <div className={"mt-3 sticky top-2 bg-white"}>
+                <PlaylistsDropdown
+                    playlists={playlists}
+                    activePlaylist={activePlaylist}
+                />
+            </div>
             <VideoList videos={activePlaylist.videos} playlist={activePlaylist} />
         </section>
     )

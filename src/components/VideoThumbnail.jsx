@@ -8,8 +8,10 @@ export default function VideoThumbnail({ video, playlist }) {
 
     return (
         <Link to={`/?playlistId=${playlist.id}&videoId=${video.id}`}>
-            <img src={thumbnail} alt={video.title} width={120} height={90} />
-            <h1>{video.title}</h1>
+            <div className={"flex py-2"}>
+                <img src={thumbnail} alt={video.title} width={120} height={90} />
+                <h1 className={"ml-2"}>{video.title}</h1>
+            </div>
         </Link>
     )
 }

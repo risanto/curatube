@@ -47,7 +47,7 @@ function App() {
   }, [videoWidth, videoHeight])
 
   useEffect(() => {
-    if (!query.videoId) {
+    if (!query.playlistId) {
       history.push(`/?playlistId=${playlists[0].id}&videoId=${playlists[0].videos[0].id}`)
       window.location.reload()
     }
@@ -61,7 +61,6 @@ function App() {
     if (activePlaylist) {
       setActiveVideo(activePlaylist.videos.filter(video => video.id === +query.videoId)[0])
     }
-
   }, [activePlaylist, query.videoId])
 
   return (
@@ -69,35 +68,39 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className={"h-full flex flex-col laptop:flex-row mt-12 px-4 justify-center"}>
-        <section className={"flex flex-col justify-center align-center laptop:justify-start sticky top-2 bg-white z-10"}>
-            <h1 className={"text-lg mt-10 lg:mt-4"}>{
-              activeVideo
-                ? activeVideo.title : defaultVideo.title
-            }</h1>
-            {activeVideo && (
-              <YouTube videoId={getYouTubeVideoId(activeVideo.url)} opts={opts} />
-            )}
+      <main className={"h-full flex flex-col laptop:flex-row mt-12 laptop:mt-0 px-4 justify-center laptop:items-center"}>
+        <section className={"flex flex-col justify-center laptop:justify-start sticky top-2 bg-white z-10"}>
+          <h1 className={"text-lg mt-10 laptop:mt-4"}>{
+            activeVideo
+              ? activeVideo.title : defaultVideo.title
+          }</h1>
+          {activeVideo && (
+            <YouTube videoId={getYouTubeVideoId(activeVideo.url)} opts={opts} />
+          )}
 
-            {!activeVideo && (
-              <YouTube videoId={getYouTubeVideoId(defaultVideo.url)} opts={opts} />
-            )}
+          {!activeVideo && (
+            <YouTube videoId={getYouTubeVideoId(defaultVideo.url)} opts={opts} />
+          )}
         </section>
-        
-        {/* Mobile version*/}
-        <section
-          className={"laptop:hidden h-full pb-6"}
-          style={{ marginTop: videoHeight }}
-        >
-          <Sidebar playlists={playlists} fixedSectionHeight={100 + videoHeight}/>
-        </section>
-        
-        {/* Laptop version */}
-        <div
-          className={"hidden laptop:block h-full pb-6 laptop:ml-2"}
-        >
-          <Sidebar playlists={playlists} fixedSectionHeight={50}/>
-        </div>
+
+        {videoHeight && (
+          <>
+            {/* Mobile version*/}
+            <section
+              className={"laptop:hidden h-full pb-6"}
+              style={{ marginTop: videoHeight }}
+            >
+              <Sidebar playlists={playlists} fixedSectionHeight={100 + videoHeight} screenWidth={width} videoHeight={videoHeight} />
+            </section>
+
+            {/* Laptop version */}
+            <section
+              className={"hidden laptop:block h-full pb-6 laptop:ml-2 laptop:flex laptop:flex-col laptop:justify-center"}
+            >
+              <Sidebar playlists={playlists} fixedSectionHeight={50} screenWidth={width} videoHeight={videoHeight} />
+            </section>
+          </>
+        )}
       </main>
     </div>
   )

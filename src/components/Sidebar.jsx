@@ -3,7 +3,7 @@ import PlaylistsDropdown from './PlaylistsDropdown'
 import VideoList from './VideoList'
 import useQuery from '../hooks/useQuery'
 
-export default function Sidebar({ playlists, fixedSectionHeight }) {
+export default function Sidebar({ playlists, fixedSectionHeight, screenWidth, videoHeight }) {
     const query = useQuery()
     const [activePlaylist, setActivePlaylist] = useState(playlists[0])
 
@@ -17,26 +17,31 @@ export default function Sidebar({ playlists, fixedSectionHeight }) {
     const [height, setHeight] = useState(`calc(100% - ${fixedSectionHeight}px)`)
 
     useEffect(() => {
+        if (screenWidth >= 1024) return setHeight(videoHeight)
+
         if (activePlaylist.videos.length < 1) setHeight('1000px')
         else setHeight(`calc(100% - ${fixedSectionHeight}px)`)
 
         // eslint-disable-next-line
-    }, [activePlaylist])
+    }, [activePlaylist, screenWidth])
 
     return (
-        <>
-            <div className={"py-2 sticky top-2 bg-white"}>
+        <div className={"laptop:mt-4 laptop:w-96"}>
+            <div className={"py-2 sticky top-2 laptop:top-12 bg-white"}>
                 <PlaylistsDropdown
                     playlists={playlists}
                     activePlaylist={activePlaylist}
                 />
             </div>
-            <div
-                style={{ height }}
-                className={`overflow-scroll`}
-            >
-                <VideoList videos={activePlaylist.videos} playlist={activePlaylist} />
-            </div>
-        </>
+
+            {height && videoHeight && (
+                <div
+                    style={{ height }}
+                    className={`overflow-auto`}
+                >
+                    <VideoList videos={activePlaylist.videos} playlist={activePlaylist} />
+                </div>
+            )}
+        </div>
     )
 }

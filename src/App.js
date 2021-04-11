@@ -20,19 +20,23 @@ function App() {
   const [activeVideo, setActiveVideo] = useState(null)
 
   let { width, height } = useWindowDimensions()
+  const [opts, setOpts] = useState({})
 
   // video ratio => height = 0.6 * width
 
-  width = width < 1000 ? width - 30 : 1/2 * width
-  height = 0.6 * width
+  useEffect(() => {
+    width = width < 1000 ? width - 30 : 1/2 * width
+    height = 0.6 * width
 
-  const opts = {
-    height,
-    width,
-    playerVars: {
-      autoplay: 1
-    }
-  }
+    setOpts({
+      height,
+      width,
+      playerVars: {
+        autoplay: 1
+      }
+    })
+
+  }, [width, height])
 
   useEffect(() => {
     if (!query.videoId) {

@@ -28,5 +28,5 @@ export default function useComponentVisible(initialIsVisible) {
         }
     })
 
-    return { ref, isComponentVisible, btnRef}
+    return { ref, btnRef, isComponentVisible, setIsComponentVisible}
 }

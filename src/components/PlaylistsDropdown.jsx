@@ -1,13 +1,21 @@
 import React, { useEffect } from 'react'
 import { createPopper } from '@popperjs/core'
 import { Link } from 'react-router-dom'
+
 import useComponentVisible from '../hooks/useComponentVisible'
+import useQuery from '../hooks/useQuery'
 
 export default function PlaylistsDropdown({ playlists, activePlaylist }) {
-    const { ref, isComponentVisible, btnRef } = useComponentVisible(false) // starts invisible
+    const query = useQuery()
+    const { ref, btnRef, isComponentVisible, setIsComponentVisible} = useComponentVisible(false) // starts invisible
 
     const btnDropdownRef = btnRef // the component that influences popover dropdown's appearance
     const popoverDropdownRef = ref // the component that'll appear/disappear
+
+    // close popover whenever playlist is changed
+    useEffect(() => {
+        setIsComponentVisible(false)
+    }, [query.playlistId])
 
     useEffect(() => {
         // place the popover dropdown belows the button whenever it's visible

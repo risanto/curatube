@@ -4,6 +4,9 @@ import VideoThumbnail from './VideoThumbnail'
 export default function VideoList({ videos, playlist }) {
     return (
         <ul>
+            {!videos.length && (
+                <h1 className={"text-center"}>There are no videos in this playlist.</h1>
+            )}
             {videos.map(video => {
                 return (
                     <li key={video.id}>

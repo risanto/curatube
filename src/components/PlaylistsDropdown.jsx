@@ -1,34 +1,23 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { createPopper } from '@popperjs/core'
 import { Link } from 'react-router-dom'
 import useComponentVisible from '../hooks/useComponentVisible'
 
 export default function PlaylistsDropdown({ playlists, activePlaylist }) {
-    const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
+    const { ref, isComponentVisible, btnRef } = useComponentVisible(false) // starts invisible
 
-    const btnDropdownRef = React.createRef()
-    const popoverDropdownRef = ref
+    const btnDropdownRef = btnRef // the component that influences popover dropdown's appearance
+    const popoverDropdownRef = ref // the component that'll appear/disappear
 
-    function openDropdownPopover() {
-        createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-            placement: "bottom-start"
-        })
-        console.log('OPEN')
-        setIsComponentVisible(true)
-    }
+    useEffect(() => {
+        // place the popover dropdown belows the button whenever it's visible
+        if (isComponentVisible) {
+            createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
+                placement: "bottom-start"
+            })
+        }
 
-    function closeDropdownPopover() {
-        console.log('CLOSE')
-        setIsComponentVisible(false)
-    }
-
-    function toggleDropdownPopover(e) {
-        isComponentVisible
-            ? closeDropdownPopover()
-            : openDropdownPopover()
-    }
-
-    console.log(isComponentVisible)
+    }, [isComponentVisible])
 
     return (
         <div className="flex mt-2">
@@ -37,7 +26,6 @@ export default function PlaylistsDropdown({ playlists, activePlaylist }) {
                     className={"flex"}
                     type="button"
                     ref={btnDropdownRef}
-                    onClick={toggleDropdownPopover}
                 >
                     <p className={"place-self-center hover:underline border px-2"}>
                         {activePlaylist.name}▼

@@ -5,7 +5,7 @@ export default function Navbar() {
         <div>
             <button className={"flex"}>
                 <img src={"/play.svg"} alt={"MyTube logo."} height={25} width={25} />
-                <h1 className={"place-self-center"}>MyTube</h1>
+                <h1 className={"place-self-center"}>MyPlaylists</h1>
             </button>
         </div>
         <div className={"border-l pl-2"}>

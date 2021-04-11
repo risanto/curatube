@@ -15,6 +15,7 @@ export default function PlaylistsDropdown({ playlists, activePlaylist }) {
     // close popover whenever playlist is changed
     useEffect(() => {
         setIsComponentVisible(false)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query.playlistId])
 
     useEffect(() => {

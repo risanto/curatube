@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PlaylistsDropdown from './PlaylistsDropdown'
 import VideoList from './VideoList'
 import useQuery from '../hooks/useQuery'
 
 export default function Sidebar({ playlists, fixedSectionHeight }) {
     const query = useQuery()
-    let activePlaylist = playlists[0]
+    const [activePlaylist, setActivePlaylist] = useState(playlists[0])
 
-    if (query.playlistId) {
-        activePlaylist = playlists.filter(playlist => playlist.id === +query.playlistId)[0]
-    }
+    useEffect(() => {
+        if (query.playlistId) {
+            setActivePlaylist(playlists.filter(playlist => playlist.id === +query.playlistId)[0])
+        }
+        // eslint-disable-next-line
+    }, [query.playlistId])
+
+    const [height, setHeight] = useState(`calc(100% - ${fixedSectionHeight}px)`)
+
+    useEffect(() => {
+        if (activePlaylist.videos.length < 1) setHeight('1000px')
+        else setHeight(`calc(100% - ${fixedSectionHeight}px)`)
+
+        // eslint-disable-next-line
+    }, [activePlaylist])
 
     return (
         <>
@@ -20,7 +32,7 @@ export default function Sidebar({ playlists, fixedSectionHeight }) {
                 />
             </div>
             <div
-                style={{ height: `calc(100% - ${fixedSectionHeight}px)` }}
+                style={{ height }}
                 className={`overflow-scroll`}
             >
                 <VideoList videos={activePlaylist.videos} playlist={activePlaylist} />

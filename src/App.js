@@ -69,8 +69,8 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className={"h-full flex flex-col lg:flex-row mt-12 px-4 justify-center"}>
-        <section className={"mt-2 flex flex-col justify-center align-center lg:justify-start sticky top-0 bg-white z-10"}>
+      <main className={"h-full flex flex-col laptop:flex-row mt-12 px-4 justify-center"}>
+        <section className={"flex flex-col justify-center align-center laptop:justify-start sticky top-2 bg-white z-10"}>
             <h1 className={"text-lg mt-10 lg:mt-4"}>{
               activeVideo
                 ? activeVideo.title : defaultVideo.title
@@ -86,18 +86,18 @@ function App() {
         
         {/* Mobile version*/}
         <section
-          className={"block lg:hidden h-full pb-6"}
-          style={{ marginTop: videoHeight + 30 }}
+          className={"laptop:hidden h-full pb-6"}
+          style={{ marginTop: videoHeight }}
         >
           <Sidebar playlists={playlists} fixedSectionHeight={100 + videoHeight}/>
         </section>
         
         {/* Laptop version */}
-        <section
-          className={"hidden lg:block h-full pb-6 lg:ml-2"}
+        <div
+          className={"hidden laptop:block h-full pb-6 laptop:ml-2"}
         >
           <Sidebar playlists={playlists} fixedSectionHeight={50}/>
-        </section>
+        </div>
       </main>
     </div>
   )
